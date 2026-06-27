@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -969,7 +970,14 @@ Justificativa: Cadastro inicial do colaborador."
       }
 
       if (!lineConsumed && lastId !== null) {
-        buffer += '\n' + line;
+        // Ignora linhas de encerramento do contrato vigia
+        const lineNorm = normalise(line);
+        const isJunk = lineNorm.includes('preencha os campos') ||
+                       lineNorm.includes('envie de volta') ||
+                       lineNorm.includes('obrigado') ||
+                       line.trim().startsWith('\u2705') ||
+                       line.trim().startsWith('\u2611');
+        if (!isJunk) buffer += '\n' + line;
       }
     }
     if (lastId !== null) commit(lastId, buffer);
@@ -1130,7 +1138,6 @@ Justificativa: Cadastro inicial do colaborador."
         '💰 *Valor*:',
         '📝 *Justificativa*:',
         '━━━━━━━━━━━━━━━━━━━━',
-        '✅ Preencha os campos e envie de volta, obrigado!',
       ]
     },
     vigia: {
@@ -1151,7 +1158,6 @@ Justificativa: Cadastro inicial do colaborador."
         '🏛️ *UFV*:',
         '📅 *Data*:',
         '━━━━━━━━━━━━━━━━━━━━',
-        '✅ Preencha os campos e envie de volta, obrigado!',
       ]
     }
   };

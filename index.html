@@ -777,6 +777,7 @@ Justificativa: Cadastro inicial do colaborador."
             <option value="">— Selecione o cargo —</option>
             <option value="Vigia Diurno">🌤️ Vigia Diurno</option>
             <option value="Vigia Noturno">🌙 Vigia Noturno</option>
+            <option value="Vigia">🛡️ Vigia</option>
             <option value="Zelador">🧹 Zelador</option>
           </select>
         </div>
@@ -928,6 +929,7 @@ Justificativa: Cadastro inicial do colaborador."
         if (v.includes('diurno')) el.value = 'Vigia Diurno';
         else if (v.includes('noturno')) el.value = 'Vigia Noturno';
         else if (v.includes('zelador')) el.value = 'Zelador';
+        else if (v.includes('vigia')) el.value = 'Vigia';
         else el.value = '';
         if (el.value) filled++;
         return;
